@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bohwt06ku43kp"]
+[gd_scene load_steps=40 format=3 uid="uid://bohwt06ku43kp"]
 
 [ext_resource type="Script" path="res://prefabs/Player.cs" id="1_33y51"]
 [ext_resource type="Texture2D" uid="uid://d3y35duii2k2e" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="2_grh12"]
@@ -32,6 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://h5wtuxiaw1gw" path="res://Assets/Sprites/Characters/Player/Running/Running_010.png" id="30_ie52a"]
 [ext_resource type="Texture2D" uid="uid://d225opmu8dv8r" path="res://Assets/Sprites/Characters/Player/Running/Running_011.png" id="31_6r0nn"]
 [ext_resource type="Script" path="res://prefabs/PlayerIdleState.cs" id="32_p6dv2"]
+[ext_resource type="Script" path="res://prefabs/PlayerMoveState.cs" id="33_eo56c"]
+[ext_resource type="Script" path="res://prefabs/StateMachine.cs" id="34_5xv84"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vw28a"]
 
@@ -92,11 +94,12 @@ _data = {
 "walk": SubResource("Animation_nl4yt")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("playerSprite", "animPlayerNode")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("playerSprite", "animPlayerNode", "stateMachine")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_33y51")
 playerSprite = NodePath("Sprite3D")
 animPlayerNode = NodePath("AnimationPlayer")
+stateMachine = NodePath("StateMachine")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.004
@@ -112,3 +115,11 @@ libraries = {
 
 [node name="PlayerIdleState" type="Node" parent="."]
 script = ExtResource("32_p6dv2")
+
+[node name="PlayerMoveState" type="Node" parent="."]
+script = ExtResource("33_eo56c")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState", "states")]
+script = ExtResource("34_5xv84")
+currentState = NodePath("../PlayerIdleState")
+states = [NodePath("../PlayerIdleState"), NodePath("../PlayerMoveState")]

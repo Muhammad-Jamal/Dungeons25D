@@ -5,7 +5,8 @@ public partial class Player : CharacterBody3D
 {
 	[Export] Sprite3D playerSprite;
 	[Export] public AnimationPlayer animPlayerNode;
-	Vector2 inputDirection;
+	[Export] public StateMachine stateMachine;
+	public Vector2 inputDirection;
 	float moveSpeed = 5.0f;
 
 
