@@ -27,8 +27,6 @@ public partial class PlayerIdleState : Node
     public override void _Notification(int what)
     {
 
-
-
         base._Notification(what);
 
 		if(what == 5001)
@@ -40,8 +38,6 @@ public partial class PlayerIdleState : Node
 		{
 			SetProcess(false);
 		}
-
-
 
     }
 }

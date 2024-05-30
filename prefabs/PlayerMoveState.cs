@@ -15,8 +15,19 @@ public partial class PlayerMoveState : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(player.inputDirection == Vector2.Zero) player.stateMachine.SwitchState<PlayerIdleState>();
-		
+		if(player.inputDirection == Vector2.Zero)
+		{ 
+			player.stateMachine.SwitchState<PlayerIdleState>();
+
+			if(Input.IsActionJustPressed(GameConstants.INPUT_PRIMARY_ACTION))
+			{
+				player.stateMachine.SwitchState<PlayerDashState>();
+			}
+		}
+		if( (player.inputDirection != Vector2.Zero) && (Input.IsActionJustPressed(GameConstants.INPUT_PRIMARY_ACTION)) )
+		{ 
+			player.stateMachine.SwitchState<PlayerDashState>();
+		}
 	}
 
 	 public override void _Notification(int what)
@@ -26,6 +37,7 @@ public partial class PlayerMoveState : Node
 		if(what == 5001)
 		{
 			player.animPlayerNode.Play(GameConstants.ANIM_WALK);
+			player.moveSpeed = 5.0f;
 			SetProcess(true);
 		}
 		if(what == 5002)

@@ -7,7 +7,7 @@ public partial class Player : CharacterBody3D
 	[Export] public AnimationPlayer animPlayerNode;
 	[Export] public StateMachine stateMachine;
 	public Vector2 inputDirection;
-	float moveSpeed = 5.0f;
+	public float moveSpeed = 5.0f;
 
 
 	public override void _Input(InputEvent @event)
