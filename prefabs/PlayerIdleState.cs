@@ -1,10 +1,8 @@
 using Godot;
 using System;
 
-public partial class PlayerIdleState : Node
+public partial class PlayerIdleState : PlayerState
 {
-
-	Player player;
 	
 
 	public override void _Ready()
@@ -21,23 +19,10 @@ public partial class PlayerIdleState : Node
 
 	}
 
-
-
-
-    public override void _Notification(int what)
+    protected override void Enter()
     {
-
-        base._Notification(what);
-
-		if(what == 5001)
-		{
-			player.animPlayerNode.Play(GameConstants.ANIM_IDLE);
-			SetProcess(true);
-		}
-		if(what == 5002)
-		{
-			SetProcess(false);
-		}
-
+        base.Enter();
+		player.animPlayerNode.Play(GameConstants.ANIM_IDLE);
     }
+
 }

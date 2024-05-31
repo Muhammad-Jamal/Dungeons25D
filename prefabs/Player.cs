@@ -21,20 +21,14 @@ public partial class Player : CharacterBody3D
 		base._Ready();
 	}
 
-	public override void _PhysicsProcess(double delta)
-	{
-		setVelocity();
-		MoveAndSlide();
-		
-	}
 
-	private void setVelocity(){
-		Velocity = new(inputDirection.X, 0, inputDirection.Y);
+	public void setVelocity(){
+		Velocity = new (inputDirection.X, 0, inputDirection.Y);
 		Velocity *= moveSpeed; 
 		flip();
 	}
 
-	private void flip(){
+	public void flip(){
 		if( Velocity.X != 0.0f ){
 			if (Velocity.X < 0.0f) playerSprite.FlipH = true;
 			else playerSprite.FlipH = false;

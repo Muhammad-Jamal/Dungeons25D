@@ -77,6 +77,22 @@ tracks/0/keys = {
 "values": [ExtResource("2_grh12")]
 }
 
+[sub_resource type="Animation" id="Animation_kyf1i"]
+resource_name = "dash"
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("32_7mjab"), ExtResource("33_njpvu"), ExtResource("34_v83rm"), ExtResource("35_eygbq"), ExtResource("36_jui14"), ExtResource("37_bvuc1")]
+}
+
 [sub_resource type="Animation" id="Animation_nl4yt"]
 resource_name = "walk"
 loop_mode = 1
@@ -92,22 +108,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("20_822eo"), ExtResource("21_un4u8"), ExtResource("22_k2o5j"), ExtResource("23_0w47t"), ExtResource("24_2sc7d"), ExtResource("25_o5iee"), ExtResource("26_m3k6y"), ExtResource("27_uwern"), ExtResource("28_waxc3"), ExtResource("29_f1yu2"), ExtResource("30_ie52a"), ExtResource("31_6r0nn")]
-}
-
-[sub_resource type="Animation" id="Animation_kyf1i"]
-resource_name = "dash"
-step = 0.166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("32_7mjab"), ExtResource("33_njpvu"), ExtResource("34_v83rm"), ExtResource("35_eygbq"), ExtResource("36_jui14"), ExtResource("37_bvuc1")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_25lt4"]
@@ -148,8 +148,10 @@ script = ExtResource("32_p6dv2")
 [node name="PlayerMoveState" type="Node" parent="StateMachine"]
 script = ExtResource("33_eo56c")
 
-[node name="PlayerDashState" type="Node" parent="StateMachine"]
+[node name="PlayerDashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashTimer")]
 script = ExtResource("41_e2317")
+dashTimer = NodePath("DashTimeout")
 
 [node name="DashTimeout" type="Timer" parent="StateMachine/PlayerDashState"]
+wait_time = 0.3
 one_shot = true

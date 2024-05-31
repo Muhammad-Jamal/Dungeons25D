@@ -1,11 +1,10 @@
 using Godot;
 using System;
 
-public partial class PlayerMoveState : Node
+public partial class PlayerMoveState : PlayerState
 {
-	// Called when the node enters the scene tree for the first time.
-	Player player;
-	// Called when the node enters the scene tree for the first time.
+
+	[Export] protected float _moveSpeed = 5.0f;
 	public override void _Ready()
 	{
 		player = GetOwner<Player>();
@@ -18,32 +17,26 @@ public partial class PlayerMoveState : Node
 		if(player.inputDirection == Vector2.Zero)
 		{ 
 			player.stateMachine.SwitchState<PlayerIdleState>();
-
-			if(Input.IsActionJustPressed(GameConstants.INPUT_PRIMARY_ACTION))
-			{
-				player.stateMachine.SwitchState<PlayerDashState>();
-			}
 		}
-		if( (player.inputDirection != Vector2.Zero) && (Input.IsActionJustPressed(GameConstants.INPUT_PRIMARY_ACTION)) )
+		else if (Input.IsActionJustPressed(GameConstants.INPUT_DASH)) 
 		{ 
 			player.stateMachine.SwitchState<PlayerDashState>();
 		}
 	}
 
-	 public override void _Notification(int what)
+    public override void _PhysicsProcess(double delta)
     {
-        base._Notification(what);
+        base._PhysicsProcess(delta);
 
-		if(what == 5001)
-		{
-			player.animPlayerNode.Play(GameConstants.ANIM_WALK);
-			player.moveSpeed = 5.0f;
-			SetProcess(true);
-		}
-		if(what == 5002)
-		{
-			SetProcess(false);
-		}
+		player.setVelocity();
+		player.MoveAndSlide();
     }
+
+
+	protected override void Enter()
+	{
+		player.animPlayerNode.Play(GameConstants.ANIM_WALK);
+		player.moveSpeed = _moveSpeed;
+	}
 }
 
