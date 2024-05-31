@@ -19,6 +19,13 @@ public partial class PlayerIdleState : PlayerState
 
 	}
 
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+		player.applyGravity();
+		player.MoveAndSlide();
+    }
+
     protected override void Enter()
     {
         base.Enter();

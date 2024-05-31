@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 public partial class Player : CharacterBody3D
 {
@@ -21,11 +22,18 @@ public partial class Player : CharacterBody3D
 		base._Ready();
 	}
 
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+    }
 
-	public void setVelocity(){
-		Velocity = new (inputDirection.X, 0, inputDirection.Y);
+    public void setVelocity(){
+		Velocity = new (inputDirection.X, Velocity.Y, inputDirection.Y);
 		Velocity *= moveSpeed; 
 		flip();
+	}
+	public void applyGravity(){
+		Velocity = new (Velocity.X, Velocity.Y - 9.8f * (float)GetPhysicsProcessDeltaTime(), Velocity.Z);
 	}
 
 	public void flip(){

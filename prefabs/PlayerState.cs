@@ -21,6 +21,11 @@ public abstract partial class PlayerState : Node
 	{
 	}
 
+	public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+		//player.applyGravity();
+    }
 	public override void _Notification(int what)
     {
         base._Notification(what);

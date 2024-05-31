@@ -8,7 +8,6 @@ public partial class PlayerMoveState : PlayerState
 	public override void _Ready()
 	{
 		player = GetOwner<Player>();
-		SetProcess(false);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,10 +24,9 @@ public partial class PlayerMoveState : PlayerState
 	}
 
     public override void _PhysicsProcess(double delta)
-    {
-        base._PhysicsProcess(delta);
-
+    { 
 		player.setVelocity();
+		player.applyGravity();
 		player.MoveAndSlide();
     }
 
