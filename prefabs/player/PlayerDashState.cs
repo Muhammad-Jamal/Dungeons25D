@@ -12,14 +12,14 @@ public partial class PlayerDashState : PlayerState
 		SetPhysicsProcess(false);
 		SetProcess(false);
         base._Ready();
-		player = GetOwner<Player>();
 		dashTimer.Timeout +=()=> DashOver();
     }
 
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-		player.MoveAndSlide();
+		character.applyGravity();
+		character.MoveAndSlide();
 		
     }
 
@@ -27,16 +27,16 @@ public partial class PlayerDashState : PlayerState
     protected override void Enter()
     {
         base.Enter();
-		player.animPlayerNode.Play(GameConstants.ANIM_DASH);
+		character.animPlayerNode.Play(GameConstants.ANIM_DASH);
 		dashTimer.Start();
-		player.moveSpeed = _dashSpeed;
-		player.setVelocity();
+		character.moveSpeed = _dashSpeed;
+		character.setVelocity();
 	}
 
     private void DashOver()
 	{
-		if ( player.inputDirection == Vector2.Zero ) player.stateMachine.SwitchState<PlayerIdleState>();
-		if ( player.inputDirection != Vector2.Zero ) player.stateMachine.SwitchState<PlayerMoveState>();
+		if ( character.inputDirection == Vector2.Zero ) character.stateMachine.SwitchState<PlayerIdleState>();
+		if ( character.inputDirection != Vector2.Zero ) character.stateMachine.SwitchState<PlayerMoveState>();
 	}
 
 }

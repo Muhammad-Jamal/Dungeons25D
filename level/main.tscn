@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://0xn36ae6p8m6"]
 
 [ext_resource type="Script" path="res://level/CameraControls.cs" id="1_f8bof"]
-[ext_resource type="PackedScene" uid="uid://bohwt06ku43kp" path="res://prefabs/Player.tscn" id="1_isahf"]
 [ext_resource type="MeshLibrary" uid="uid://cc258y2adrjly" path="res://level/Lv1MeshLib.tres" id="2_1dcuc"]
+[ext_resource type="PackedScene" uid="uid://bohwt06ku43kp" path="res://prefabs/player/Player.tscn" id="2_bawp8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v2o28"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -30,11 +30,11 @@ environment = SubResource("Environment_1v2lf")
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
 top_level = true
 script = ExtResource("1_f8bof")
-_offset = Vector3(0, 0.2, 0.5)
+_offset = Vector3(0, 0.1, 0.2)
 _player = NodePath("../Player")
 
-[node name="Player" parent="." instance=ExtResource("1_isahf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+[node name="Player" parent="." instance=ExtResource("2_bawp8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14356, 0)
 
 [node name="Node3D" type="Node3D" parent="."]
 

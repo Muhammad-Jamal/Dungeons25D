@@ -5,36 +5,32 @@ public partial class PlayerMoveState : PlayerState
 {
 
 	[Export] protected float _moveSpeed = 5.0f;
-	public override void _Ready()
-	{
-		player = GetOwner<Player>();
-	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(player.inputDirection == Vector2.Zero)
+		if(character.inputDirection == Vector2.Zero)
 		{ 
-			player.stateMachine.SwitchState<PlayerIdleState>();
+			character.stateMachine.SwitchState<PlayerIdleState>();
 		}
 		else if (Input.IsActionJustPressed(GameConstants.INPUT_DASH)) 
 		{ 
-			player.stateMachine.SwitchState<PlayerDashState>();
+			character.stateMachine.SwitchState<PlayerDashState>();
 		}
 	}
 
     public override void _PhysicsProcess(double delta)
     { 
-		player.setVelocity();
-		player.applyGravity();
-		player.MoveAndSlide();
+		character.setVelocity();
+		character.applyGravity();
+		character.MoveAndSlide();
     }
 
 
 	protected override void Enter()
 	{
-		player.animPlayerNode.Play(GameConstants.ANIM_WALK);
-		player.moveSpeed = _moveSpeed;
+		character.animPlayerNode.Play(GameConstants.ANIM_WALK);
+		character.moveSpeed = _moveSpeed;
 	}
 }
 
