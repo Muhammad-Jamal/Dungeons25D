@@ -14,7 +14,7 @@ public abstract partial class Character : CharacterBody3D
 	public virtual void applyGravity(){
 		//if (Velocity.Y < -0.5f) return;
 		if (IsOnFloor()) return;
-		Velocity = new (Velocity.X, Velocity.Y - 16f * (float) GetPhysicsProcessDeltaTime(), Velocity.Z);
+		Velocity = new (Velocity.X, Velocity.Y - 9.8f * (float) GetPhysicsProcessDeltaTime(), Velocity.Z);
 		GD.Print(Velocity.Y, GetPhysicsProcessDeltaTime());
 	}
 
@@ -24,7 +24,7 @@ public abstract partial class Character : CharacterBody3D
 			else playerSprite.FlipH = false;
 		}
 	}
-	    public void setVelocity()
+	public void setVelocity()
 	{
 
 		Velocity = new (inputDirection.X * moveSpeed, Velocity.Y, inputDirection.Y * moveSpeed);

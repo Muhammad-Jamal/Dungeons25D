@@ -9,8 +9,6 @@ public partial class PlayerDashState : PlayerState
 	[Export] protected float _dashSpeed = 20.0f;
     public override void _Ready()
     {
-		SetPhysicsProcess(false);
-		SetProcess(false);
         base._Ready();
 		dashTimer.Timeout +=()=> DashOver();
     }

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://0xn36ae6p8m6"]
+[gd_scene load_steps=8 format=3 uid="uid://0xn36ae6p8m6"]
 
 [ext_resource type="Script" path="res://level/CameraControls.cs" id="1_f8bof"]
 [ext_resource type="MeshLibrary" uid="uid://cc258y2adrjly" path="res://level/Lv1MeshLib.tres" id="2_1dcuc"]
 [ext_resource type="PackedScene" uid="uid://bohwt06ku43kp" path="res://prefabs/player/Player.tscn" id="2_bawp8"]
+[ext_resource type="PackedScene" uid="uid://cgt8sxqbiyeow" path="res://prefabs/enemy.tscn" id="4_6ptuo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v2o28"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -55,4 +56,14 @@ cell_center_z = false
 data = {
 "cells": PackedInt32Array(65534, 65527, 4, 65535, 65527, 1, 0, 65527, 1, 1, 65527, 5, 2, 65527, 1, 3, 65527, 3, 3, 65531, 1441793, 3, 65535, 1441797, 65534, 65535, 1441798, 65534, 65531, 1441793, 65533, 65527, 1, 65532, 65527, 1, 65531, 65527, 1048579, 65531, 65530, 1048577, 65531, 65531, 1048577, 65531, 65532, 1048577, 65531, 65533, 1048577, 65531, 65534, 1048577, 65531, 65535, 1048577, 65531, 0, 1048577, 0, 65525, 1441793, 0, 65521, 1441793, 0, 65517, 1441793, 0, 65513, 1441793, 0, 65509, 1441793, 2, 65525, 1441793, 2, 65521, 1441793, 2, 65517, 1441793, 2, 65513, 1441793, 2, 65509, 1441793, 2, 65505, 1441793, 0, 65505, 1441793, -131071, 65502, 655362, 65534, 65529, 1048578)
 }
-metadata/_editor_floor_ = Vector3(0, 0, 0)
+metadata/_editor_floor_ = Vector3(0, 2, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(0.865746, 0.500484, 0, -0.500484, 0.865746, 0, 0, 0, 1.05348, -1.7969, -0.184368, -6.98528)
+visible = false
+cast_shadow = 0
+use_collision = true
+size = Vector3(1, 1, 2.84293)
+
+[node name="Enemy" parent="." instance=ExtResource("4_6ptuo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.86253, 3.0186, 0)

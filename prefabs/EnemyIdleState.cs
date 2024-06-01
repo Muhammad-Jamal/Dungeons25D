@@ -1,12 +1,12 @@
 using Godot;
 using System;
 
-public partial class PlayerIdleState : PlayerState
+public partial class EnemyIdleState : EnemyState
 {
-	
-	public override void _Process(double delta)
+	// Called when the node enters the scene tree for the first time.
+public override void _Process(double delta)
 	{
-		if(character.inputDirection != Vector2.Zero) character.stateMachine.SwitchState<PlayerMoveState>();
+		//if(character.inputDirection != Vector2.Zero) character.stateMachine.SwitchState<PlayerMoveState>();
 
 	}
 
@@ -22,5 +22,4 @@ public partial class PlayerIdleState : PlayerState
         base.Enter();
 		character.animPlayerNode.Play(GameConstants.ANIM_IDLE);
     }
-
 }

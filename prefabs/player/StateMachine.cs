@@ -20,7 +20,6 @@ public partial class StateMachine : Node
 	{
 		
 	}
-
 	public void SwitchState<T>()
 	{
 		Node newState = null;
