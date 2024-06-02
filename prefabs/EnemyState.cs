@@ -13,4 +13,9 @@ public partial class EnemyState : CharacterState
 	public override void _Process(double delta)
 	{
 	}
+
+    public override void Enter()
+    {
+        base.Enter();
+    }
 }

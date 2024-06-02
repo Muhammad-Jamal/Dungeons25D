@@ -22,7 +22,7 @@ public partial class PlayerDashState : PlayerState
     }
 
 
-    protected override void Enter()
+    public override void Enter()
     {
         base.Enter();
 		character.animPlayerNode.Play(GameConstants.ANIM_DASH);

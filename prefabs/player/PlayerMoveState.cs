@@ -27,7 +27,7 @@ public partial class PlayerMoveState : PlayerState
     }
 
 
-	protected override void Enter()
+	public override void Enter()
 	{
 		character.animPlayerNode.Play(GameConstants.ANIM_WALK);
 		character.moveSpeed = _moveSpeed;

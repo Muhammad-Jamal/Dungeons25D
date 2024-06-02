@@ -36,7 +36,7 @@ public abstract partial class CharacterState : Node
 		}
     }
 
-	protected virtual void Enter()
+	public virtual void Enter()
 	{
 
 	}

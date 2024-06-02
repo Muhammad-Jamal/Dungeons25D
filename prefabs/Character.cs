@@ -6,6 +6,7 @@ public abstract partial class Character : CharacterBody3D
 	[Export] public Sprite3D playerSprite;
 	[Export] public AnimationPlayer animPlayerNode;
 	[Export] public StateMachine stateMachine;
+	[Export] public Path3D path;
 	public float moveSpeed = 5.0f;
 	public Vector2 inputDirection;
 
@@ -15,7 +16,7 @@ public abstract partial class Character : CharacterBody3D
 		//if (Velocity.Y < -0.5f) return;
 		if (IsOnFloor()) return;
 		Velocity = new (Velocity.X, Velocity.Y - 9.8f * (float) GetPhysicsProcessDeltaTime(), Velocity.Z);
-		GD.Print(Velocity.Y, GetPhysicsProcessDeltaTime());
+		//GD.Print(Velocity.Y, GetPhysicsProcessDeltaTime());
 	}
 
 	public virtual void flip(){

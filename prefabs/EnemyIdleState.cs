@@ -7,7 +7,6 @@ public partial class EnemyIdleState : EnemyState
 public override void _Process(double delta)
 	{
 		//if(character.inputDirection != Vector2.Zero) character.stateMachine.SwitchState<PlayerMoveState>();
-
 	}
 
     public override void _PhysicsProcess(double delta)
@@ -17,7 +16,7 @@ public override void _Process(double delta)
 		character.MoveAndSlide();
     }
 
-    protected override void Enter()
+    public override void Enter()
     {
         base.Enter();
 		character.animPlayerNode.Play(GameConstants.ANIM_IDLE);

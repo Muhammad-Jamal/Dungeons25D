@@ -17,7 +17,7 @@ public partial class PlayerIdleState : PlayerState
 		character.MoveAndSlide();
     }
 
-    protected override void Enter()
+    public override void Enter()
     {
         base.Enter();
 		character.animPlayerNode.Play(GameConstants.ANIM_IDLE);
