@@ -18,4 +18,11 @@ public partial class EnemyReturnState : EnemyState
         directionToDestination = character.path.Curve.GetPointPosition(0);
 		character.animPlayerNode.Play(GameConstants.ANIM_WALK);
     }
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+        Vector3 destinationDir = character.GlobalPosition - (character.path.GlobalPosition + character.path.Curve.GetPointPosition(0));
+        character.setVelocityInDir(destinationDir.Normalized());
+        character.MoveAndSlide();
+    }
 }

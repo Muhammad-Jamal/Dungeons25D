@@ -14,6 +14,10 @@ public override void _Process(double delta)
         base._PhysicsProcess(delta);
 		character.applyGravity();
 		character.MoveAndSlide();
+        if(Input.IsActionJustPressed(GameConstants.INPUT_PRIMARY_ACTION))
+        {
+            character.stateMachine.SwitchState<EnemyReturnState>();
+        }
     }
 
     public override void Enter()

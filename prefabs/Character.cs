@@ -31,5 +31,10 @@ public abstract partial class Character : CharacterBody3D
 		Velocity = new (inputDirection.X * moveSpeed, Velocity.Y, inputDirection.Y * moveSpeed);
 		flip();
 	}
+	public void setVelocityInDir(Vector3 dir)
+	{
 
+		Velocity = new (dir.X * moveSpeed, Velocity.Y, dir.Z * moveSpeed);
+		flip();
+	}
 }
