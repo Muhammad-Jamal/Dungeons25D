@@ -4,25 +4,22 @@ using System.IO;
 
 public partial class EnemyReturnState : EnemyState
 {
-	Vector3 directionToDestination;
-    public override async void _Ready()
+    public override void _Ready()
     {
         base._Ready();
-        
-         
     }
-
     public override void Enter()
     {
         base.Enter();
-        directionToDestination = character.path.Curve.GetPointPosition(0);
 		character.animPlayerNode.Play(GameConstants.ANIM_WALK);
+        destination = GetPathGlobalCords(0) - character.GlobalPosition ;
+		character.navigationAgent3D.TargetPosition = destination;
+
     }
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        Vector3 destinationDir = character.GlobalPosition - (character.path.GlobalPosition + character.path.Curve.GetPointPosition(0));
-        character.setVelocityInDir(destinationDir.Normalized());
-        character.MoveAndSlide();
+        character.stateMachine.SwitchState<EnemyPatrolState>();
     }
+
 }

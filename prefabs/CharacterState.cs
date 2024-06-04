@@ -40,4 +40,8 @@ public abstract partial class CharacterState : Node
 	{
 
 	}
+	public virtual void Exit()
+	{
+
+	}
 }

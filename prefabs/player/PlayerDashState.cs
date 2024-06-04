@@ -10,7 +10,7 @@ public partial class PlayerDashState : PlayerState
     public override void _Ready()
     {
         base._Ready();
-		dashTimer.Timeout +=()=> DashOver();
+		dashTimer.Timeout += DashOver;
     }
 
     public override void _PhysicsProcess(double delta)
